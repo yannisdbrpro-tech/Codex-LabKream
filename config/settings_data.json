@@ -1,0 +1,22 @@
+{
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "order": [
+      "header",
+      "footer"
+    ],
+    "theme_settings": {
+      "reduce_motion": true,
+      "support_email": "support@kream.studio"
+    }
+  }
+}

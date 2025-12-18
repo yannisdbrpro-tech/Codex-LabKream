@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "reduce_motion",
+        "label": "Respect reduced motion",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support email",
+        "default": "support@kream.studio"
+      }
+    ]
+  }
+]
