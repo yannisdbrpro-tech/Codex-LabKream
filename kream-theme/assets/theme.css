@@ -1,0 +1,9 @@
+.section-divider { border-top: 1px solid var(--border); margin: var(--spacing-lg) 0; }
+.hero__content::after { content: ''; display: block; width: 90px; height: 4px; margin-top: var(--spacing-md); background: linear-gradient(90deg, var(--deep-red), var(--gold)); }
+.product-card__link:focus-visible, .cta:focus-visible { outline: 2px solid var(--ice-blue); outline-offset: 2px; }
+.site-nav a { position: relative; }
+.site-nav a::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--ice-blue); transition: width var(--transition); }
+.site-nav a:hover::after { width: 100%; }
+.product__scarcity span { display: block; }
+.product__form .cta { width: 100%; text-align: center; }
+.details-open summary::-webkit-details-marker { display: none; }

@@ -1,0 +1,102 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+<section class="product" aria-labelledby="product-title-{{ section.id }}">
+  <div class="product__gallery">
+    {% if product.media.size > 0 %}
+      {% for media in product.media %}
+        <div class="product__media">
+          {% case media.media_type %}
+            {% when 'image' %}
+              <img src="{{ media | img_url: '900x' }}" alt="{{ media.alt | escape }}" loading="lazy">
+            {% when 'video' %}
+              {{ media | video_tag: controls: true }}
+            {% else %}
+              {{ media | media_tag }}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="product__media placeholder">Visuals calibrating</div>
+    {% endif %}
+  </div>
+  <div class="product__info">
+    <p class="eyebrow">Authority Release</p>
+    <h1 id="product-title-{{ section.id }}">{{ product.title }}</h1>
+    <p class="product__tagline">Presence. Cut. Finish. Weight. Rarity.</p>
+    <p class="product__description">{{ product.description | strip_html | truncate: 220 }}</p>
+
+    <div class="product__pricing">
+      <span class="product__price">{{ current_variant.price | money }}</span>
+      {% if current_variant.compare_at_price > current_variant.price %}
+        <span class="product__compare">{{ current_variant.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+
+    <div class="product__scarcity" aria-live="polite">
+      {% if current_variant.available %}
+        {% if current_variant.inventory_management and current_variant.inventory_quantity > 0 %}
+          <span>Limited drop: {{ current_variant.inventory_quantity }} units on standby.</span>
+        {% else %}
+          <span>Made to order with disciplined pacing.</span>
+        {% endif %}
+      {% else %}
+        <span class="sold-out">Currently sold out. Secure your place.</span>
+      {% endif %}
+    </div>
+
+    <form method="post" action="/cart/add" class="product__form" id="AddToCartForm-{{ section.id }}">
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      {% unless product.has_only_default_variant %}
+        <label class="visually-hidden" for="product-select-{{ section.id }}">Select option</label>
+        <select id="product-select-{{ section.id }}" name="id" class="product__select" aria-label="Select variant">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}" {% if variant == current_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+              {{ variant.title }} {% unless variant.available %}- Reserved{% endunless %}
+            </option>
+          {% endfor %}
+        </select>
+      {% endunless %}
+
+      {% if current_variant.available %}
+        <button type="submit" class="cta" name="add">Add to bag</button>
+      {% else %}
+        <a class="cta ghost" href="mailto:waitlist@kream.studio?subject=Waitlist%20{{ product.title | url_encode }}">Join waitlist</a>
+      {% endif %}
+    </form>
+
+    <div class="product__accordions" data-reduced-motion="{{ settings.reduce_motion }}">
+      <details open>
+        <summary>Details</summary>
+        <p>Engineered textiles. Clean hardware. Precision stitch density for long-term structure.</p>
+      </details>
+      <details>
+        <summary>Fit &amp; cut</summary>
+        <p>Intentional taper. Shoulder authority. Movement range approved for daily hustle.</p>
+      </details>
+      <details>
+        <summary>Care</summary>
+        <p>Cold wash, inside out. Lay flat to dry. No shortcuts.</p>
+      </details>
+      <details>
+        <summary>Shipping &amp; returns</summary>
+        <p>Tracked dispatch within 48h. Controlled returns within 14 days. Restocking maintains scarcity.</p>
+      </details>
+      <details>
+        <summary>Size guide</summary>
+        <p>Model reference: 6'1" / athletic build. Use your true size for structured stance.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product details",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Product details"
+    }
+  ]
+}
+{% endschema %}

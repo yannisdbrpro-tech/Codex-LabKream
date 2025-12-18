@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "manifesto": {
+      "type": "manifesto",
+      "settings": {}
+    }
+  },
+  "order": [
+    "manifesto"
+  ]
+}

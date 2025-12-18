@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "manifesto": {
+      "type": "manifesto",
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Ice Hustle Everyday",
+        "collection": "ice-hustle-everyday",
+        "products_to_show": 4
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "manifesto",
+    "featured"
+  ]
+}
