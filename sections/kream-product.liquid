@@ -1,0 +1,46 @@
+<section class="kream-section" id="MainContent">
+  <div class="kream-container kream-product">
+    <div class="kream-product__media">
+      {% if product.featured_image != blank %}
+        {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: product.title }}
+      {% endif %}
+    </div>
+    <div class="kream-product__details">
+      <p class="kream-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="kream-heading">{{ product.title }}</h1>
+      <div class="kream-product__price">{{ product.price | money }}</div>
+      <div class="kream-subtext">{{ product.description | strip_html | truncate: 220 }}</div>
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="kream-button kream-button--premium">{{ section.settings.cart_label }}</button>
+      </form>
+      <div class="kream-subtext">{{ section.settings.note }}</div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kream Product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Decision space"
+    },
+    {
+      "type": "text",
+      "id": "cart_label",
+      "label": "Panier label",
+      "default": "Panier"
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Note",
+      "default": "Minimal quantities. Quiet confidence."
+    }
+  ]
+}
+{% endschema %}

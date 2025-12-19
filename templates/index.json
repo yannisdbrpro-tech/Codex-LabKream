@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "header": {
+      "type": "kream-header"
+    },
+    "hero": {
+      "type": "kream-hero"
+    },
+    "collection_grid": {
+      "type": "kream-collection-grid"
+    },
+    "footer": {
+      "type": "kream-footer"
+    }
+  },
+  "order": [
+    "header",
+    "hero",
+    "collection_grid",
+    "footer"
+  ]
+}

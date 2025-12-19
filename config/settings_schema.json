@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "KREAM"
+      },
+      {
+        "type": "paragraph",
+        "content": "Dark, calm, street-luxe theme system."
+      }
+    ]
+  }
+]

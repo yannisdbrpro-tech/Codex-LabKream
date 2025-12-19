@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "header": {
+      "type": "kream-header"
+    },
+    "collection": {
+      "type": "kream-collection-grid",
+      "settings": {
+        "use_collection_products": true
+      }
+    },
+    "footer": {
+      "type": "kream-footer"
+    }
+  },
+  "order": [
+    "header",
+    "collection",
+    "footer"
+  ]
+}

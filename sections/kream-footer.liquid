@@ -1,0 +1,51 @@
+<footer class="kream-footer">
+  <div class="kream-container kream-footer__grid">
+    <div>
+      <div class="kream-header__logo">{{ section.settings.logo_text }}</div>
+      <p class="kream-subtext">{{ section.settings.tagline }}</p>
+    </div>
+    <div>
+      <p class="kream-eyebrow">Studio</p>
+      <p class="kream-subtext">{{ section.settings.address }}</p>
+    </div>
+    <div>
+      <p class="kream-eyebrow">Connect</p>
+      <div class="kream-subtext">
+        {% for link in linklists[section.settings.menu].links %}
+          <div><a href="{{ link.url }}">{{ link.title }}</a></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Kream Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "KREAM"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Dr3am It ? Hu2tle It ? Mater!al!ze!"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "Midnight studio. Built for disciplined outsiders."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}
