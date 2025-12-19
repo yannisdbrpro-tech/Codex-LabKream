@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "header": {
+      "type": "kream-header"
+    },
+    "main": {
+      "type": "kream-product"
+    },
+    "footer": {
+      "type": "kream-footer"
+    }
+  },
+  "order": [
+    "header",
+    "main",
+    "footer"
+  ]
+}

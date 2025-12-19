@@ -1,0 +1,29 @@
+<header class="kream-header">
+  <div class="kream-container kream-header__row">
+    <div class="kream-header__logo">{{ section.settings.logo_text }}</div>
+    <nav class="kream-header__nav" aria-label="Main navigation">
+      {% for link in linklists[section.settings.menu].links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Kream Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "KREAM"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}

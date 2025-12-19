@@ -1,0 +1,115 @@
+<section class="kream-section">
+  <div class="kream-container">
+    <p class="kream-eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="kream-heading">{{ section.settings.heading }}</h2>
+    <div class="kream-collection-grid">
+      {% if section.settings.use_collection_products and collection != blank %}
+        {% for product in collection.products limit: section.settings.products_limit %}
+          <a class="kream-card" href="{{ product.url }}">
+            {% if product.featured_image != blank %}
+              {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.title }}
+            {% endif %}
+            <div>
+              <div class="kream-card__title">{{ product.title }}</div>
+              <p class="kream-subtext">{{ product.price | money }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      {% else %}
+        {% for block in section.blocks %}
+          <a class="kream-card" href="{{ block.settings.link }}">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {% endif %}
+            <div>
+              <div class="kream-card__title">{{ block.settings.title }}</div>
+              <p class="kream-subtext">{{ block.settings.text }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kream Collection Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The drops"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Engineered collections"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_collection_products",
+      "label": "Use current collection products",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products limit",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Series One"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Architected essentials for calm momentum."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Kream Collection Grid",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
